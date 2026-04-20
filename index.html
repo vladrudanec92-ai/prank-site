@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Secret Filter 😎</title>
+<style>
+  body {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    padding-top: 50px;
+  }
+  button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #22c55e;
+    color: white;
+    cursor: pointer;
+  }
+  video {
+    margin-top: 20px;
+    width: 300px;
+    border-radius: 15px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>😎 Секретний TikTok фільтр</h1>
+<p>Натисни кнопку нижче</p>
+
+<button onclick="start()">Активувати</button>
+
+<br>
+<video id="video" autoplay playsinline style="display:none;"></video>
+<h2 id="status"></h2>
+
+<script>
+async function start() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+    const video = document.getElementById("video");
+    video.srcObject = stream;
+    video.style.display = "block";
+
+    const status = document.getElementById("status");
+
+    status.innerText = "🔍 Сканування обличчя...";
+    
+    setTimeout(() => {
+      status.innerText = "📸 Фото зроблено!";
+    }, 3000);
+
+    setTimeout(() => {
+      status.innerText = "📤 Відправка даних...";
+    }, 5000);
+
+    setTimeout(() => {
+      status.innerText = "😂 ТЕБЕ РОЗІГРАЛИ!";
+    }, 7000);
+
+  } catch (err) {
+    alert("😅 Дозволь доступ до камери");
+  }
+}
+</script>
+
+</body>
+</html>
