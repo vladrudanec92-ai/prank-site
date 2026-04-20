@@ -1,0 +1,2 @@
+# prank-site
+fun prank
